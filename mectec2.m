@@ -1,4 +1,5 @@
-x0 = 0;
+%constantes
+x_0 = 0;
 t_f=1;
 m=0.5;
 r=0.8;
@@ -6,15 +7,20 @@ n=6;
 S=1.22;
 c_d=0.8;
 g=9.81;
+
+%parametros
 A=(n/2)*r^2*sin((2*pi)/n);
 C=(1/(2*m))*c_d*S*A;
 v_f=sqrt((2*g*m)/(c_d*S*A));
 
+%Resolucion EDO
 function derx = priorden(t,x,g,C) 
 derx = g-C*x^2;
 endfunction
 
-[t,x] = ode23('priorden',[0 t_f],x0,g,C);
+[t,x] = ode23('priorden',[0 t_f],x_0,g,C);
+
+%Graficar
 hold
 grid
 title('Solucion de la EDO del sistema paracaidas');
